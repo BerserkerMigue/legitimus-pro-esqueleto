@@ -1,0 +1,123 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                      String    @id @default(cuid())
+  username                String    @unique
+  email                   String    @unique
+  pass_hash               String
+  credits                 Int       @default(0)
+  credits_total_assigned  Int       @default(0)
+  last_credit_update      DateTime  @updatedAt
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+
+  // Relations
+  chats                   Chat[]
+  transactions            Transaction[]
+  userContexts            UserContext[]
+
+  @@index([email])
+  @@index([username])
+}
+
+model Chat {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String
+  instanceId String   @default("general")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  // Relations
+  turns     Turn[]
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Turn {
+  id        String    @id @default(cuid())
+  chatId    String
+  chat      Chat      @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  question  String
+  response  String    @db.Text
+  tokensUsed Int?
+  costUSD   Float?
+  createdAt DateTime  @default(now())
+
+  @@index([chatId])
+  @@index([createdAt])
+}
+
+model Transaction {
+  id              String    @id @default(cuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type            String    // "consumption", "purchase", "refund"
+  amount          Int
+  description     String
+  relatedChatId   String?
+  operationType   String?   // "chat", "document", "audio", etc.
+  tokenUsage      Json?     // { prompt_tokens, completion_tokens, total_tokens }
+  costDetails     Json?     // { inputCost, outputCost, totalCost }
+  timestamp       DateTime  @default(now())
+
+  @@index([userId])
+  @@index([timestamp])
+  @@index([type])
+}
+
+model UserContext {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String?
+  description String?
+  metadata    Json?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([userId])
+}
+
+model Document {
+  id          String    @id @default(cuid())
+  userId      String
+  filename    String
+  contentType String
+  size        Int
+  storageKey  String    // Para almacenamiento en S3 o similar
+  metadata    Json?
+  createdAt   DateTime  @default(now())
+  expiresAt   DateTime?
+
+  @@index([userId])
+  @@index([createdAt])
+  @@index([expiresAt])
+}
+
+model AuditLog {
+  id          String    @id @default(cuid())
+  userId      String?
+  action      String
+  resource    String
+  changes     Json?
+  ipAddress   String?
+  userAgent   String?
+  timestamp   DateTime  @default(now())
+
+  @@index([userId])
+  @@index([timestamp])
+  @@index([action])
+}

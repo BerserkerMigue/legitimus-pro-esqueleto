@@ -1,0 +1,48 @@
+{
+  "credit_system": {
+    "mode": "cost_based",
+    "usd_per_credit": 0.01,
+    "rounding_mode": "up",
+    "show_cost_to_admin": true,
+    "show_cost_to_user": false,
+    "show_tokens_to_admin": true,
+    "show_tokens_to_user": false,
+    "admin_emails": ["migue@gmail.com"]
+  },
+  "_notes": {
+    "mode": "cost_based = descuenta según costo real | per_interaction = 1 crédito por interacción (legacy)",
+    "usd_per_credit": "Costo operativo interno: cuánto gastas en OpenAI por crédito. Ejemplo: 0.01 = 1 crédito cuesta $0.01 USD",
+    "rounding_mode": "up = redondea hacia arriba | down = hacia abajo | nearest = al más cercano",
+    "show_cost_to_admin": "Mostrar costo en USD a emails de admin",
+    "show_cost_to_user": "Mostrar costo en USD a usuarios normales",
+    "show_tokens_to_admin": "Mostrar tokens consumidos a emails de admin",
+    "show_tokens_to_user": "Mostrar tokens consumidos a usuarios normales",
+    "admin_emails": "Lista de emails que verán información técnica completa",
+    "pricing_to_customer": "IMPORTANTE: El precio que cobras al cliente es INDEPENDIENTE de este archivo. Este archivo solo define el costo operativo interno.",
+    "initial_credits": "Los créditos iniciales se asignan MANUALMENTE con manage_users.bat, no automáticamente."
+  },
+  "_examples": {
+    "scenario_1": {
+      "description": "Consulta pequeña",
+      "tokens": 5000,
+      "cost_usd": 0.01,
+      "credits_deducted": 1,
+      "calculation": "0.01 / 0.01 = 1 crédito"
+    },
+    "scenario_2": {
+      "description": "Consulta mediana",
+      "tokens": 15000,
+      "cost_usd": 0.03,
+      "credits_deducted": 3,
+      "calculation": "0.03 / 0.01 = 3 créditos"
+    },
+    "scenario_3": {
+      "description": "Consulta grande",
+      "tokens": 25000,
+      "cost_usd": 0.05,
+      "credits_deducted": 5,
+      "calculation": "0.05 / 0.01 = 5 créditos"
+    }
+  }
+}
+
