@@ -1,20 +1,25 @@
 
-MIT License
+LICENCIA PRIVADA COMERCIAL — LEGITIMUS PRO
 
-Copyright (c) 2026 LEGITIMUS PRO
+Todos los derechos reservados © 2026 LEGITIMUS PRO
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software with strict limitations:
+Este software, su estructura, arquitectura, lógica, documentación y cualquier archivo asociado 
+son propiedad intelectual exclusiva del autor.
 
-1. The Software is provided strictly for non-commercial, illustrative or academic purposes.
-2. Reuse, reproduction, distribution, or derivation of the architecture, configuration logic, 
-   normative system or any integration process is strictly prohibited unless authorized by the author.
-3. Commercial deployment, reverse engineering, or use in derivative works without explicit written 
-   permission is prohibited and constitutes a violation of intellectual property rights.
-4. The Software is provided "as is", without warranty of any kind.
+Se prohíbe expresamente, sin excepción:
 
-This license exists to demonstrate authorship and protect the original structural and intellectual identity 
-of LEGITIMUS PRO, a Chilean legal technology system, not to enable open redistribution.
+1. Copiar, distribuir, modificar, adaptar o reutilizar este software total o parcialmente.
+2. Utilizar este código, arquitectura o lógica como base para otros desarrollos, comerciales o no.
+3. Ejecutar ingeniería inversa, clonación funcional o simulación estructural.
+4. Integrar o incorporar cualquier parte de este software en proyectos externos.
 
-Contact: derechos@legitimus.pro
+Esta licencia no otorga ningún derecho de uso, ni constituye cesión, venta ni permiso.
+Cualquier uso no autorizado constituye una infracción legal sujeta a sanciones conforme a la ley chilena
+de propiedad intelectual (Ley Nº 17.336) y tratados internacionales aplicables.
+
+Este repositorio ha sido publicado únicamente para demostrar la autoría y proteger la estructura operativa 
+de LEGITIMUS PRO como obra original.
+
+Contacto legal: mjsaieg@gmail.com
+Ubicación jurisdiccional: Santiago, Chile
+Fecha de publicación: enero de 2026
